@@ -1,0 +1,27 @@
+<div class="jumbotron">
+  <table class="table">
+    <thead class="white black-text">
+      <tr>
+        <th class="handle" scope="col">אולם</th>
+        <th class="handle" scope="col">שם הסרט</th>
+        <th class="handle" scope="col">זמנים</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let movie of movies; let i = index'>
+          <td>{{movie.hall}}</td>
+          <td>
+              <div class="z-depth-0">
+                      <div data-toggle="collapse" [attr.data-target]="'#' + i" aria-expanded="false">
+                          {{movie.moviename}}
+                      </div>
+                  <div id="{{i}}" class="collapse mt-3">
+                  {{movie.description}}
+                  </div>
+              </div>
+          </td>
+          <td><span style='color: greenyellow'>{{movie.starthour}}</span>-<span style='color: red;'>{{movie.endhour}}</span>, הפסקה: {{movie.break}}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>

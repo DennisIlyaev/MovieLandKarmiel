@@ -1,0 +1,22 @@
+table {
+    text-align: center;
+}
+
+tbody, thead {
+    color: #fff;
+}
+
+th {
+    font-weight: bold;
+}
+
+tr {
+    cursor: pointer;
+}
+
+.jumbotron {
+    margin: 0;
+    padding: 0;
+    background: rgb(0, 0, 0);
+    margin: 0 auto;
+}

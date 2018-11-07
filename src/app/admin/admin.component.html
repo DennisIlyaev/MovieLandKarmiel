@@ -1,0 +1,90 @@
+<div class="jumbotron">
+<table class="table">
+  <thead class="white black-text">
+    <tr>
+      <th scope="col">אולם</th>
+      <th scope="col">שם הסרט</th>
+      <th scope="col">זמנים</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let movie of movies' (click)='this.selectedMovie = movie; this.allowedToAdd = false'>
+      <td>{{movie.hall}}</td>
+      <td>{{movie.moviename}}</td>
+      <td><span style='color: greenyellow'>{{movie.starthour}}</span>-<span style='color: red;'>{{movie.endhour}}</span>, הפסקה: {{movie.break}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<button *ngIf='allowedToAdd === true' class="btn btn-info add" (click)='addMovie = true; allowedToAdd = false; mainMenu()'>חזרה לתפריט ראשי</button>
+<button *ngIf='allowedToAdd === true' class="btn btn-warning add" (click)='addMovie = true; allowedToAdd = false'>הוספת סרט</button>
+
+<div *ngIf="addMovie === true" class="jumbotron edit">
+  <form autocomplete="off" ngNativeValidate #form='ngForm' (ngSubmit)='postMovie(form.value)'>
+      <p class="h4 text-center mb-4">הוספת סרט</p>
+      <div class="md-form">
+          <input type="number" name='hall' class="form-control" ngModel required>
+          <label>אולם</label>
+      </div>
+      <br>
+      <div class="md-form">
+      <input type="text" name='moviename' class="form-control" ngModel required>
+      <label>שם הסרט</label>
+    </div>
+     <br>
+     <div class="md-form">
+      <input type="text" name='starthour' class="form-control" ngModel required>
+      <label>שעת התחלה</label>
+    </div>
+     <br>
+     <div class="md-form">
+      <input type="text" name='endhour' class="form-control" ngModel required>
+      <label>שעת סיום</label>
+    </div>
+     <br>
+    <div class="md-form">
+      <input type="text" name='break' class="form-control" ngModel required>
+      <label>שעת הפסקה</label>
+    </div>
+     <br>
+     <div class="md-form">
+        <textarea style="resize: none;" name="description" cols="30" rows="10" class="form-control" ngModel required></textarea>
+        <label>תקציר הסרט</label>
+      </div>
+       <br>
+      <div class="text-center mt-4">
+          <button class="btn btn-danger" (click)='addMovie = false; allowedToAdd = true'>ביטול</button>
+          <button class="btn btn-success" type="submit">הוסף</button>
+      </div>
+  </form>
+  </div>
+
+<div *ngIf="selectedMovie" class="jumbotron edit">
+    <form autocomplete="off" ngNativeValidate>
+      <p class="h4 text-center mb-4">פעולות</p>
+      <label class="grey-text">אולם</label>
+      <input type="number" name='hall' class="form-control" required [(ngModel)]='selectedMovie.hall'>
+      <br>
+      <label class="grey-text">שם הסרט</label>
+      <input type="text" name='moviename' class="form-control" required [(ngModel)]='selectedMovie.moviename'>
+      <br>
+      <label class="grey-text">שעת התחלה</label>
+      <input type="text" name='starthour' class="form-control" required [(ngModel)]='selectedMovie.starthour'>
+      <br>
+      <label class="grey-text">שעת סיום</label>
+      <input type="text" name='endhour' class="form-control" required [(ngModel)]='selectedMovie.endhour'>
+      <br>
+      <label class="grey-text">שעת הפסקה</label>
+      <input type="text" name='break' class="form-control" required [(ngModel)]='selectedMovie.break'>
+      <br>
+      <label>תקציר הסרט</label>
+      <textarea style="resize: none;" name="description" cols="30" rows="10" class="form-control" required [(ngModel)]='selectedMovie.description'></textarea>
+      <br>
+      <div class="text-center mt-4">
+          <button class="btn btn-outline-elegant" (click)='allowedToAdd = true; selectedMovie = null'>ביטול</button>
+          <button class="btn btn-danger" (click)='deleteMovie(this.selectedMovie)'>מחק</button>
+          <button class="btn btn-warning" (click)='updateMovie(this.selectedMovie)'>עדכן</button>
+      </div>
+    </form>
+</div>

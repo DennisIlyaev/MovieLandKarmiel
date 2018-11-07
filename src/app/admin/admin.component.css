@@ -1,0 +1,45 @@
+table {
+    text-align: center;
+}
+
+tbody, thead {
+    color: #fff;
+}
+
+th {
+    font-weight: bold;
+}
+
+tr {
+    cursor: pointer;
+}
+
+.jumbotron {
+    margin: 0;
+    padding: 0;
+    background: rgb(0, 0, 0);
+    margin: 0 auto;
+}
+
+.edit {
+    width: 60%;
+    background: #eee;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.edit label {
+    font-size: 14pt;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.add {
+    float: right;
+}
+
+
